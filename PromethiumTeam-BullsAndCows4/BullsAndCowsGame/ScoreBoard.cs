@@ -6,8 +6,92 @@ using System.Threading.Tasks;
 
 namespace BullsAndCowsGame
 {
-    //TODO : Refactor original class "klasirane"
-    class ScoreBoard
+    //Refactored original class "klasirane"
+    class ScoreBoard<T> : IEnumerable<T>, IEnumerator<T> where T : IComparable<T>
     {
-    }
+        private T[] data;
+        private int count;
+        private int maxCount;
+        private int position = -1;
+
+        public int Count
+        {
+            get { return this.count; }
+        }
+
+        public T Current
+        {
+            get { return this.data[this.position]; }
+        }
+        
+        public ScoreBoard() : 
+            this(5)
+        { }
+
+        public ScoreBoard(int maxCount)
+        {
+            this.maxCount = maxCount;
+            this.data = new T[this.maxCount];
+            this.count = 0;
+        }
+
+        public void Add(T item)
+        {
+            if (item.CompareTo(this.data[this.maxCount - 1]) >= 0)
+            {
+                int tPointer = 0;
+                while (item.CompareTo(this.data[tPointer]) < 0)
+                {
+                    tPointer++;
+                }
+
+                for (int i = this.maxCount - 1; i > tPointer; i--)
+                {
+                    this.data[i] = this.data[i - 1];
+                }
+
+                this.data[tPointer] = item;
+                if (this.count < this.maxCount)
+                {
+                    this.count++;
+                }
+            }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return (IEnumerator<T>)this;
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator<T>)this;
+        }
+
+        object System.Collections.IEnumerator.Current
+        {
+            get { return this.data[this.position]; }
+        }
+
+        public bool MoveNext()
+        {
+            if (this.position < this.Count - 1)
+            {
+                this.position++;
+                return true;
+            }
+
+            return false;
+        }
+
+        protected void Reset()
+        {
+            this.position = -1;
+        }
+
+        public void Dispose()
+        {
+            this.Reset();
+        }
+    }      
 }
