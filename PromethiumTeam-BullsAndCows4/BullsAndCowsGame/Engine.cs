@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BullsAndCowsGame
 {
     //TODO : Refactor code, that manages the gameplay from original class "bikove_i_kravi"
     public class Engine
     {
-        private const int NUMBER_LENGHT = 4;
+        private const int NumberLenght = 4;
 
         public void Start()
         {
@@ -17,12 +15,12 @@ namespace BullsAndCowsGame
             do
             {
                 UserInterface.PrintWelcomeMessage();
-                generateNumber();
+                GenerateNumber();
                 int attempts = 0;
                 int cheats = 0;
 				
-                UserInterface.helpNumber = new StringBuilder("XXXX");
-                UserInterface.helpPattern = null;
+                UserInterface.HelpNumber = new StringBuilder("XXXX");
+                UserInterface.HelpPattern = null;
                 do
                 {
                     Console.Write("Enter your guess or command: ");
@@ -44,8 +42,8 @@ namespace BullsAndCowsGame
                             attempts++;
                             int bullsCount;
                             int cowsCount;
-                            CalculateBullsAndCowsCount(playerInput, UserInterface.generatedNumber, out bullsCount, out cowsCount);
-                            if (bullsCount == NUMBER_LENGHT)
+                            CalculateBullsAndCowsCount(playerInput, UserInterface.GeneratedNumber, out bullsCount, out cowsCount);
+                            if (bullsCount == NumberLenght)
                             {
                                 UserInterface.PrintCongratulateMessage(attempts, cheats);
                                 UserInterface.FinishGame(attempts, cheats);
@@ -108,7 +106,7 @@ namespace BullsAndCowsGame
 
         private bool IsValidInput(string playerInput)
         {
-            if (playerInput == String.Empty || playerInput.Length != NUMBER_LENGHT)
+            if (playerInput == String.Empty || playerInput.Length != NumberLenght)
             {
                 return false;
             }
@@ -123,18 +121,18 @@ namespace BullsAndCowsGame
             return true;
         }
 
-        public static void generateNumber()
+        public static void GenerateNumber()
         {
             StringBuilder num = new StringBuilder(4);
             Random randomNumberGenerator = new Random(DateTime.Now.Millisecond);
 
-            for (int i = 0; i < NUMBER_LENGHT; i++)
+            for (int i = 0; i < NumberLenght; i++)
             {
                 int randomDigit = randomNumberGenerator.Next(9);
                 num.Append(randomDigit);
             }
 
-            UserInterface.generatedNumber = num.ToString();
+            UserInterface.GeneratedNumber = num.ToString();
         }
     }
 }

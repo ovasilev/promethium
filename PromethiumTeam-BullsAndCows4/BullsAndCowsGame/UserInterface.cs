@@ -1,38 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BullsAndCowsGame
 {
     //TODO : Refactor code, that manages user comunication from original class "bikove_i_kravi"
     public static class UserInterface
     {
-        private const string WELCOME_MESSAGE = "Welcome to “Bulls and Cows” game. " +
+        private const string WelcomeMessage = "Welcome to “Bulls and Cows” game. " +
             "Please try to guess my secret 4-digit number." +
             "Use 'top' to view the top scoreboard, 'restart' " +
             "to start a new game and 'help' to cheat and 'exit' to quit the game.";
 
-        private const string WRONG_COMMAND_MESSAGE = "Incorrect guess or command!";
+        private const string WrongCommandMessage = "Incorrect guess or command!";
 
-        public static StringBuilder helpNumber;
-        public static string helpPattern;
-        public static string generatedNumber;
+        public static StringBuilder HelpNumber;
+        public static string HelpPattern;
+        public static string GeneratedNumber;
 
-        private static ScoreBoard<Player> ScoreBoard = new ScoreBoard<Player>();
-
+        private static readonly ScoreBoard<Player> scoreBoard = new ScoreBoard<Player>();
         
         //private void PrintWelcomeMessage()
         public static void PrintWelcomeMessage()
         {
-            Console.WriteLine(WELCOME_MESSAGE);
+            Console.WriteLine(WelcomeMessage);
         }
 
         //private void PrintWrongCommandMessage()
         public static void PrintWrongCommandMessage()
         {
-            Console.WriteLine(WRONG_COMMAND_MESSAGE);
+            Console.WriteLine(WrongCommandMessage);
         }
 
         //private void PrintCongratulateMessage(int attempts, int cheats)
@@ -59,7 +56,7 @@ namespace BullsAndCowsGame
             {
                 RevealDigit(cheats);
                 cheats++;
-                Console.WriteLine("The number looks like {0}.", helpNumber);
+                Console.WriteLine("The number looks like {0}.", HelpNumber);
             }
             else
             {
@@ -86,12 +83,12 @@ namespace BullsAndCowsGame
         public static void AddPlayerToScoreboard(string playerName, int attempts)
         {
             Player player = new Player(playerName, attempts);
-            ScoreBoard.Add(player);
+            scoreBoard.Add(player);
         }
 
         public static void PrintScoreboard()
         {
-            if (ScoreBoard.Count == 0)
+            if (scoreBoard.Count == 0)
             {
                 Console.WriteLine("Top scoreboard is empty.");
             }
@@ -99,7 +96,7 @@ namespace BullsAndCowsGame
             {
                 Console.WriteLine("Scoreboard:");
                 int i = 1;
-                foreach (Player p in ScoreBoard)
+                foreach (Player p in scoreBoard)
                 {
                     Console.WriteLine("{0}. {1} --> {2} guess" + ((p.Attempts == 1) ? "" : "es"), i++, p.Name, p.Attempts);
                 }
@@ -108,15 +105,15 @@ namespace BullsAndCowsGame
 
         public static void RevealDigit(int cheats)
         {
-            if (helpPattern == null)
+            if (HelpPattern == null)
             {
-                generateHelpPattern();
+                GenerateHelpPattern();
             }
-            int digitToReveal = helpPattern[cheats] - '0';
-            helpNumber[digitToReveal - 1] = generatedNumber[digitToReveal - 1];
+            int digitToReveal = HelpPattern[cheats] - '0';
+            HelpNumber[digitToReveal - 1] = GeneratedNumber[digitToReveal - 1];
         }
 
-        public static void generateHelpPattern()
+        public static void GenerateHelpPattern()
         {
             string[] helpPaterns = {"1234", "1243", "1324", "1342", "1432", "1423",
                 "2134", "2143", "2314", "2341", "2431", "2413",
@@ -126,7 +123,7 @@ namespace BullsAndCowsGame
 
             Random randomNumberGenerator = new Random(DateTime.Now.Millisecond);
             int randomPaternNumber = randomNumberGenerator.Next(helpPaterns.Length - 1);
-            helpPattern = helpPaterns[randomPaternNumber];
+            HelpPattern = helpPaterns[randomPaternNumber];
         }
 
         
