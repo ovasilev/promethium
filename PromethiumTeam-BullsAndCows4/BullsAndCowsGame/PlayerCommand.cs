@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BullsAndCowsGame
 {
-    internal enum PlayerCommand
+    public enum PlayerCommand
     {
         Top,
         Restart,
