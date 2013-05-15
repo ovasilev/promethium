@@ -33,7 +33,7 @@ namespace BullsAndCowsGame
                     }
                     else if (enteredCommand == PlayerCommand.Help)
                     {
-                        cheats = UserInterface.PokajiHelp(cheats);
+                        cheats = UserInterface.ShowHelp(cheats);
                     }
                     else
                     {

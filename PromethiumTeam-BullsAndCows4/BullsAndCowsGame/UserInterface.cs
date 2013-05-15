@@ -38,10 +38,6 @@ namespace BullsAndCowsGame
             Console.Write("Congratulations! You guessed the secret number in {0} attempts", attempts);
             if (cheats == 0)
             {
-
-
-
-
                 Console.WriteLine(".");
             }
             else
@@ -50,7 +46,7 @@ namespace BullsAndCowsGame
             }
         }
 
-        public static int PokajiHelp(int cheats)
+        public static int ShowHelp(int cheats)
         {
             if (cheats < 4)
             {
