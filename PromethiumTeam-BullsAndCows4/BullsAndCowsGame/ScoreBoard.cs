@@ -9,9 +9,9 @@ namespace BullsAndCowsGame
     //Refactored original class "klasirane"
     class ScoreBoard<T> : IEnumerable<T>, IEnumerator<T> where T : IComparable<T>
     {
-        private T[] data;
+        private readonly T[] data;
         private int count;
-        private int maxCount;
+        private readonly int maxCount;
         private int position = -1;
 
         public int Count

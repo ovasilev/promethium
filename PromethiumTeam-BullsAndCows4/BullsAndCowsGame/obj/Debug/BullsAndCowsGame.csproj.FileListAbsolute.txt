@@ -4,3 +4,6 @@ C:\Users\2\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCows
 C:\Users\2\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.pdb
 C:\Users\2\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.exe
 C:\Users\2\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.pdb
+C:\Users\Kaloyan\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.exe.config
+C:\Users\Kaloyan\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.exe
+C:\Users\Kaloyan\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.pdb
