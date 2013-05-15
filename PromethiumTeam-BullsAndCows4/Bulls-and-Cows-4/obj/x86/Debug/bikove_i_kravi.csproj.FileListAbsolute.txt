@@ -3,3 +3,5 @@ C:\Users\2\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\Bulls-and-Co
 C:\Users\2\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\Bulls-and-Cows-4\obj\x86\Debug\bikove_i_kravi.csprojResolveAssemblyReference.cache
 C:\Users\2\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\Bulls-and-Cows-4\obj\x86\Debug\BullsAndCowsGame.exe
 C:\Users\2\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\Bulls-and-Cows-4\obj\x86\Debug\BullsAndCowsGame.pdb
+D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\Bulls-and-Cows-4\obj\x86\Debug\BullsAndCowsGame.exe
+D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\Bulls-and-Cows-4\obj\x86\Debug\BullsAndCowsGame.pdb
