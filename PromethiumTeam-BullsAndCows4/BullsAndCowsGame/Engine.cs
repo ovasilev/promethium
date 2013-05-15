@@ -19,11 +19,8 @@ namespace BullsAndCowsGame
                 UserInterface.PrintWelcomeMessage();
                 generateNumber();
                 int attempts = 0;
-
-
-
-
                 int cheats = 0;
+				
                 UserInterface.helpNumber = new StringBuilder("XXXX");
                 UserInterface.helpPattern = null;
                 do
@@ -53,10 +50,6 @@ namespace BullsAndCowsGame
                                 UserInterface.PrintCongratulateMessage(attempts, cheats);
                                 UserInterface.FinishGame(attempts, cheats);
                                 break;
-
-
-
-
                             }
                             else
                             {
@@ -70,9 +63,6 @@ namespace BullsAndCowsGame
                                 UserInterface.PrintWrongCommandMessage();
                             }
                         }
-
-
-
                     }
                 }
                 while (enteredCommand != PlayerCommand.Exit && enteredCommand != PlayerCommand.Restart);
@@ -141,10 +131,6 @@ namespace BullsAndCowsGame
             for (int i = 0; i < NUMBER_LENGHT; i++)
             {
                 int randomDigit = randomNumberGenerator.Next(9);
-
-
-
-
                 num.Append(randomDigit);
             }
 
