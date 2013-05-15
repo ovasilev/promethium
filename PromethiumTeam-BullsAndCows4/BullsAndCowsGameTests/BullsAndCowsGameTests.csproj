@@ -52,6 +52,13 @@
   <ItemGroup>
     <Compile Include="NumbersManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PlayerTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BullsAndCowsGame\BullsAndCowsGame.csproj">
+      <Project>{ccf0185f-d5c0-4155-9c1b-d63dfe39ab66}</Project>
+      <Name>BullsAndCowsGame</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

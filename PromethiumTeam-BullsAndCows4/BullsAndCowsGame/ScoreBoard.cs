@@ -84,7 +84,7 @@ namespace BullsAndCowsGame
             return false;
         }
 
-        protected void Reset()
+        public void Reset()
         {
             this.position = -1;
         }
