@@ -1,11 +1,24 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="CommandParser.cs" company="TelerikAcademy">
+//     All rights reserved © Telerik Academy 2012-2013
+// </copyright>
+//----------------------------------------------------------------------
+
+using System;
 using System.Linq;
 
 namespace BullsAndCowsGame
 {
-    //TODO : Refactor code, that manages commands
+    /// <summary>
+    /// Static class responsible for player's commands
+    /// </summary>
     public static class CommandParser
     {
+        /// <summary>
+        /// Method which handles player's commands
+        /// </summary>
+        /// <param name="playerInput">The input that a player enters on the console</param>
+        /// <returns>Returned value tells the game what to do next</returns>
         public static PlayerCommand PlayerInputToPlayerCommand(string playerInput)
         {
             if (playerInput.ToLower() == "top")
