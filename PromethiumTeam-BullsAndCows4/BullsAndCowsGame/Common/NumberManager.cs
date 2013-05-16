@@ -1,14 +1,34 @@
-﻿namespace BullsAndCowsGame
+﻿//-----------------------------------------------------------------------
+// <copyright file="NumberManager.cs" company="TelerikAcademy">
+//     All rights reserved © Telerik Academy 2012-2013
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace BullsAndCowsGame
 {
     using System;
     using System.Text;
 
-    //TODO : Refactor code, that manages number generation, bulls and cows checks and help/cheat functionality from original class "bikove_i_kravi" 
+    /// <summary>
+    /// Static Class for that manages number generation
+    /// </summary>
     static class NumberManager
     {
+        /// <summary>
+        /// Constant representing the number of digits <see cref="System.Int32"/>
+        /// for the generated number
+        /// </summary>
         public const int NUMBER_LENGHT = 4;
+
+        /// <summary>
+        /// A <see cref="System.String"/> which is the random generated four digit number
+        /// converted to string
+        /// </summary>
         public static string Number { get; private set; }
 
+        /// <summary>
+        /// Method for generating a random 4 digit number
+        /// </summary>
         public static void GenerateNumber()
         {
             StringBuilder number = new StringBuilder(4);
@@ -23,6 +43,15 @@
             Number = number.ToString();
         }
 
+        /// <summary>
+        /// Method that compares <paramref name="playerInput"/> with
+        /// <paramref name="generatedNumber"/> and takes out the coincidental
+        /// <paramref name="bullsCount"/> and <paramref name="cowsCount"/>
+        /// </summary>
+        /// <param name="playerInput">Four digit number represented as a string</param>
+        /// <param name="generatedNumber">Random generated four digit number represented as a string</param>
+        /// <param name="bullsCount">Correctly guessed by the user number of Bulls</param>
+        /// <param name="cowsCount">Correctly guessed by the user number of Cows</param>
         public static void GetBullsAndCows(string playerInput, string generatedNumber, out int bullsCount, out int cowsCount)
         {
             bullsCount = 0;
