@@ -1,4 +1,10 @@
-﻿namespace BullsAndCowsGame
+﻿//-----------------------------------------------------------------------
+// <copyright file="Player.cs" company="TelerikAcademy">
+//     All rights reserved © Telerik Academy 2012-2013
+// </copyright>
+//----------------------------------------------------------------------
+
+namespace BullsAndCowsGame
 {
     using System;
     
