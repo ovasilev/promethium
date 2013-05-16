@@ -19,6 +19,11 @@
         /// </summary>
         private int attempts;
 
+        /// <summary>
+        /// Represents validated player's cheats
+        /// </summary>
+        private int cheats;
+
         #endregion
 
         #region Constructor
@@ -27,10 +32,21 @@
         /// Initializes a new instance of the <see cref="Player"/> class.
         /// </summary>
         /// <param name="playerName">Player name</param>
-        /// <param name="attempts">Player attempts</param>
-        public Player(string playerName, int attempts)
+        public Player(string playerName)
         {
             this.Name = playerName;
+            this.Attempts = 0;
+            this.Cheats = 0;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Player"/> class.
+        /// </summary>
+        /// <param name="playerName">Player name</param>
+        /// <param name="attempts">Player attempts</param>
+        public Player(string playerName, int attempts)
+            : this(playerName)
+        {
             this.Attempts = attempts;
         }
 
@@ -76,6 +92,27 @@
                 }
 
                 this.attempts = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets player's cheats
+        /// </summary>
+        public int Cheats
+        {
+            get
+            {
+                return this.cheats;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Player cheats can`t be a negative number");
+                }
+
+                this.cheats = value;
             }
         }
 
