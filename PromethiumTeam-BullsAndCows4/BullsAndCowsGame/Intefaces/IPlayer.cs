@@ -13,7 +13,14 @@ namespace BullsAndCowsGame.Intefaces
     /// </summary>
     public interface IPlayer : IComparable<IPlayer>
     {
+        /// <summary>
+        /// Player's name
+        /// </summary>
         string Name { get; set; }
+        
+        /// <summary>
+        /// Player's attempts
+        /// </summary>
         int Attempts { get; set; }
     }
 }

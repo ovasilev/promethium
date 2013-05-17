@@ -15,7 +15,15 @@ namespace BullsAndCowsGame.Intefaces
     /// <typeparam name="T">Type</typeparam>
     public interface IScoreBoard<T> : IEnumerable<T>, IEnumerator<T> where T : IComparable<T>
     {
+        /// <summary>
+        /// ScoreBoard lenght
+        /// </summary>
         int Count { get; }
+
+        /// <summary>
+        /// Adds new element in ScoreBoard
+        /// </summary>
+        /// <param name="item">Player score</param>
         void Add(T item);
     }
 }
