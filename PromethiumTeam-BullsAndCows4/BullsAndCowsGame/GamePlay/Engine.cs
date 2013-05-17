@@ -53,6 +53,7 @@ namespace BullsAndCowsGame.GamePlay
                 Console.WriteLine();
             }
             while (enteredCommand != PlayerCommand.Exit);
+
             Console.WriteLine("Good bye!");
         }
 
@@ -89,7 +90,7 @@ namespace BullsAndCowsGame.GamePlay
                     int bullsCount;
                     int cowsCount;
                     number.GetBullsAndCows(playerInput, number.Digits, out bullsCount, out cowsCount);
-                    if (bullsCount == Number.NUMBER_LENGHT)
+                    if (bullsCount == Number.LENGHT)
                     {
                         UserInterface.PrintCongratulateMessage(player.Attempts, player.Cheats);
                         this.FinishGame(player.Attempts, player.Cheats);
@@ -120,7 +121,7 @@ namespace BullsAndCowsGame.GamePlay
         /// according to if the input is valid or not.</returns>
         private bool IsValidInput(string playerInput)
         {
-            if (playerInput == String.Empty || playerInput.Length != Number.NUMBER_LENGHT)
+            if (playerInput == String.Empty || playerInput.Length != Number.LENGHT)
             {
                 return false;
             }

@@ -3,7 +3,6 @@
 //     All rights reserved © Telerik Academy 2012-2013
 // </copyright>
 //-----------------------------------------------------------------------
-
 namespace BullsAndCowsGame.GameObjects
 {
     using System;
@@ -14,20 +13,21 @@ namespace BullsAndCowsGame.GameObjects
     /// </summary>
     internal class Number
     {
+        #region Fields
+
         /// <summary>
         /// Constant representing the number of digits <see cref="System.Int32"/>
         /// for the generated number
         /// </summary>
-        public const int NUMBER_LENGHT = 4;
+        public const int LENGHT = 4;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
-        /// A <see cref="System.String"/> which is the random generated four digit number
-        /// converted to string
+        /// Initializes a new instance of the <see cref="Number"/> class.
         /// </summary>
-        public string Digits { get; private set; }
-        public string HelpPattern { get; private set; }
-        public StringBuilder HelpNumber { get; private set; }
-
         public Number()
         {
             this.Digits = this.GenerateNumber();
@@ -35,7 +35,29 @@ namespace BullsAndCowsGame.GameObjects
             this.HelpNumber = new StringBuilder("XXXX");
         }
 
+        #endregion 
 
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets random generated four digit number as <see cref="System.String"/>
+        /// </summary>
+        public string Digits { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the pattern for the order in which the help number
+        /// will be revealed
+        /// </summary>
+        public string HelpPattern { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the help number
+        /// </summary>
+        public StringBuilder HelpNumber { get; private set; }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Method for generating a random 4 digit number
@@ -45,7 +67,7 @@ namespace BullsAndCowsGame.GameObjects
             StringBuilder number = new StringBuilder(4);
             Random randomNumberGenerator = new Random(DateTime.Now.Millisecond);
 
-            for (int i = 0; i < NUMBER_LENGHT; i++)
+            for (int i = 0; i < LENGHT; i++)
             {
                 int randomDigit = randomNumberGenerator.Next(9);
                 number.Append(randomDigit);
@@ -97,7 +119,6 @@ namespace BullsAndCowsGame.GameObjects
             }
         }
 
-
         /// <summary>
         /// Reveals digits from number one at a time and updates HelpNumber property 
         /// </summary>
@@ -106,7 +127,7 @@ namespace BullsAndCowsGame.GameObjects
         {
             bool reveal = false;
 
-            if (cheats < NUMBER_LENGHT)
+            if (cheats < this.LENGHT)
             {
                 int digitToReveal = this.HelpPattern[cheats] - '0';
                 this.HelpNumber[digitToReveal - 1] = this.Digits[digitToReveal - 1];
@@ -114,7 +135,6 @@ namespace BullsAndCowsGame.GameObjects
 
             return reveal;
         }
-
 
         /// <summary>
         /// Generates unique help pattern used when cheating
@@ -131,6 +151,6 @@ namespace BullsAndCowsGame.GameObjects
             return helpPaterns[randomPaternNumber];
         }
 
-
+        #endregion
     }
 }

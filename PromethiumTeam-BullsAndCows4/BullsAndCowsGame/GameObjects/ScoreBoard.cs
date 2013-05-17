@@ -3,8 +3,6 @@
 //     All rights reserved © Telerik Academy 2012-2013
 // </copyright>
 //-----------------------------------------------------------------------
-
-
 namespace BullsAndCowsGame.GameObjects
 {
     using System;
@@ -22,6 +20,7 @@ namespace BullsAndCowsGame.GameObjects
         private int count;
         private readonly int maxCount;
         private int position = -1;
+        private int defaultScoreBoardLenght = 5;
 
         public int Count
         {
@@ -33,8 +32,8 @@ namespace BullsAndCowsGame.GameObjects
             get { return this.data[this.position]; }
         }
         
-        public ScoreBoard() : 
-            this(5)
+        public ScoreBoard()
+            : this(defaultScoreBoardLenght)
         { }
 
         public ScoreBoard(int maxCount)
