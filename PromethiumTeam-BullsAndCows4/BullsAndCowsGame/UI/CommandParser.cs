@@ -7,7 +7,7 @@
 using System;
 using System.Linq;
 
-namespace BullsAndCowsGame
+namespace BullsAndCowsGame.UI
 {
     /// <summary>
     /// Static class responsible for player's commands

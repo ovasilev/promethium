@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace BullsAndCowsGame
+namespace BullsAndCowsGame.GameObjects
 {
     using System;
     using System.Text;

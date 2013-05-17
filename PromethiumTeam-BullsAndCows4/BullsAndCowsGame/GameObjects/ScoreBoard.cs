@@ -5,17 +5,18 @@
 //-----------------------------------------------------------------------
 
 
-namespace BullsAndCowsGame
+namespace BullsAndCowsGame.GameObjects
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using BullsAndCowsGame.Intefaces;
 
     /// <summary>
     /// Class that manages the score board
     /// </summary>
     //Refactored original class "klasirane"s
-    public class ScoreBoard<T> : IEnumerable<T>, IEnumerator<T> where T : IComparable<T>
+    public class ScoreBoard<T> : IScoreBoard<T> where T : IComparable<T>
     {
         private readonly T[] data;
         private int count;

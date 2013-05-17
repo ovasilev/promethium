@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using BullsAndCowsGame.GamePlay;
 
 namespace BullsAndCowsGame
 {

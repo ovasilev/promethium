@@ -2,7 +2,7 @@
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using BullsAndCowsGame;
+    using BullsAndCowsGame.GameObjects;
 
     [TestClass]
     public class PlayerTests

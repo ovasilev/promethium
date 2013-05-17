@@ -4,14 +4,15 @@
 // </copyright>
 //----------------------------------------------------------------------
 
-namespace BullsAndCowsGame
+namespace BullsAndCowsGame.GameObjects
 {
     using System;
-    
+    using BullsAndCowsGame.Intefaces;
+
     /// <summary>
     /// Represents a player
     /// </summary>
-    public class Player : IComparable<Player>
+    public class Player : IPlayer
     {
         #region Fields
 
@@ -133,7 +134,7 @@ namespace BullsAndCowsGame
         /// <returns>Higher than zero if this instance have less attempts,
         /// lower than zero if the other player have less attempts
         /// and zero if the two players have the same number of attempts</returns>
-        public int CompareTo(Player other)
+        public int CompareTo(IPlayer other)
         {
             if (other == null)
             {

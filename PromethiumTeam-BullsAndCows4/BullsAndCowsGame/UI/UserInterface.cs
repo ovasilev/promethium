@@ -4,11 +4,12 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace BullsAndCowsGame
+namespace BullsAndCowsGame.UI
 {
     using System;
     using System.Linq;
     using System.Text;
+    using BullsAndCowsGame.Intefaces;
 
     /// <summary>
     /// Public Static Class that manages the user interface
@@ -67,7 +68,7 @@ namespace BullsAndCowsGame
         /// Prints the scoreboard on the console
         /// </summary>
         /// <param name="scoreBoard">Given scoreboard to be printed</param>
-        public static void PrintScoreboard(ScoreBoard<Player> scoreBoard)
+        public static void PrintScoreboard(IScoreBoard<IPlayer> scoreBoard)
         {
             if (scoreBoard.Count == 0)
             {
@@ -77,18 +78,25 @@ namespace BullsAndCowsGame
             {
                 Console.WriteLine("Scoreboard:");
                 int i = 1;
-                foreach (Player player in scoreBoard)
+                foreach (IPlayer player in scoreBoard)
                 {
                     Console.WriteLine("{0}. {1} --> {2} guess" + ((player.Attempts == 1) ? "" : "es"), i++, player.Name, player.Attempts);
                 }
             }
         }
 
+        /// <summary>
+        /// Prints help number for cheat on the console
+        /// </summary>
+        /// <param name="helpNumber">Help number to cheat</param>
         public static void ShowHelp(string helpNumber)
         {
             Console.WriteLine("The number looks like {0}.", helpNumber);
         }
 
+        /// <summary>
+        /// Prints message that cheat limit is reached
+        /// </summary>
         public static void PrintCheatsLimitReached()
         {
 
