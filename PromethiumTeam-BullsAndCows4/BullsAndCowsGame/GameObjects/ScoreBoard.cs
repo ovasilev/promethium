@@ -13,29 +13,50 @@ namespace BullsAndCowsGame.GameObjects
     /// <summary>
     /// Class that manages the score board
     /// </summary>
-    //Refactored original class "klasirane"s
     public class ScoreBoard<T> : IScoreBoard<T> where T : IComparable<T>
     {
+        #region Fields
+
+        /// <summary>
+        /// ScoreBoard data
+        /// </summary>
         private readonly T[] data;
+
+        /// <summary>
+        /// ScoreBoard lenght
+        /// </summary>
         private int count;
+
+        /// <summary>
+        /// ScoreBoard max number of inputs
+        /// </summary>
         private readonly int maxCount;
+
+        /// <summary>
+        /// Current enumerator position
+        /// </summary>
         private int position = -1;
-        private int defaultScoreBoardLenght = 5;
 
-        public int Count
-        {
-            get { return this.count; }
-        }
+        /// <summary>
+        /// Default lenght of ScoreBoard. 
+        /// Used for the empty constructor
+        /// </summary>
+        private static int defaultScoreBoardLenght = 5;
 
-        public T Current
-        {
-            get { return this.data[this.position]; }
-        }
-        
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScoreBoard"/> class.
+        /// </summary>
         public ScoreBoard()
             : this(defaultScoreBoardLenght)
         { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScoreBoard"/> class.
+        /// </summary>
         public ScoreBoard(int maxCount)
         {
             this.maxCount = maxCount;
@@ -43,6 +64,42 @@ namespace BullsAndCowsGame.GameObjects
             this.count = 0;
         }
 
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the number of inputs in the ScoreBoard
+        /// </summary>
+        public int Count
+        {
+            get { return this.count; }
+        }
+
+        /// <summary>
+        /// Gets current position
+        /// </summary>
+        public T Current
+        {
+            get { return this.data[this.position]; }
+        }
+
+        /// <summary>
+        /// Gets current position
+        /// </summary>
+        object System.Collections.IEnumerator.Current
+        {
+            get { return this.data[this.position]; }
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Adds new element in ScoreBoard
+        /// </summary>
+        /// <param name="item">Player score</param>
         public void Add(T item)
         {
             if (item.CompareTo(this.data[this.maxCount - 1]) >= 0)
@@ -66,21 +123,28 @@ namespace BullsAndCowsGame.GameObjects
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
             return (IEnumerator<T>)this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return (IEnumerator<T>)this;
         }
 
-        object System.Collections.IEnumerator.Current
-        {
-            get { return this.data[this.position]; }
-        }
-
+        /// <summary>
+        /// Moves to next position in the colection
+        /// </summary>
+        /// <returns></returns>
         public bool MoveNext()
         {
             if (this.position < this.Count - 1)
@@ -92,14 +156,22 @@ namespace BullsAndCowsGame.GameObjects
             return false;
         }
 
+        /// <summary>
+        /// Resets position 
+        /// </summary>
         public void Reset()
         {
             this.position = -1;
         }
 
+        /// <summary>
+        /// Dispose ScoreBoard
+        /// </summary>
         public void Dispose()
         {
             this.Reset();
         }
+
+        #endregion
     }      
 }

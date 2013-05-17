@@ -127,7 +127,7 @@ namespace BullsAndCowsGame.GameObjects
         {
             bool reveal = false;
 
-            if (cheats < this.LENGHT)
+            if (cheats < LENGHT)
             {
                 int digitToReveal = this.HelpPattern[cheats] - '0';
                 this.HelpNumber[digitToReveal - 1] = this.Digits[digitToReveal - 1];
