@@ -13,3 +13,6 @@ D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Home
 D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.csprojResolveAssemblyReference.cache
 D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.exe
 D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.pdb
+C:\Users\Kaloyan\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.exe
+C:\Users\Kaloyan\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.pdb
+C:\Users\Kaloyan\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.csprojResolveAssemblyReference.cache
