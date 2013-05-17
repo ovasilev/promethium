@@ -34,6 +34,16 @@ namespace BullsAndCowsGame.GamePlay
         /// </summary>
         private ScoreBoard<Player> scoreBoard { get; set; }
 
+        /// <summary>
+        /// Keeps information about whether game should restart
+        /// </summary>
+        private bool restart;
+
+        /// <summary>
+        /// Keeps information about whether game should exit
+        /// </summary>        
+        private bool exit;
+
         #endregion
 
         #region Constructors
@@ -82,6 +92,9 @@ namespace BullsAndCowsGame.GamePlay
                 UserInterface.ShowWelcomeGreeting();
                 this.player = new Player("NoName");
                 this.number = new GameNumber();
+                
+                this.restart = false;
+                this.exit = false;
 
                 do
                 {
@@ -89,11 +102,11 @@ namespace BullsAndCowsGame.GamePlay
                     enteredCommand = CommandParser.PlayerInputToPlayerCommand(playerInput);
                     ExecuteCommand(enteredCommand, playerInput);
                 }
-                while (enteredCommand != PlayerCommand.Exit && enteredCommand != PlayerCommand.Restart);
+                while (!this.restart && !this.exit);
 
                 UserInterface.EndOfGameMessage();
             }
-            while (enteredCommand != PlayerCommand.Exit);
+            while (!this.exit);
 
             UserInterface.ShowFairwell();
         }
@@ -107,48 +120,77 @@ namespace BullsAndCowsGame.GamePlay
         /// <param name="player">The user that's playing at the moment</param>
         private void ExecuteCommand(PlayerCommand enteredCommand, string playerInput)
         {
-            if (enteredCommand == PlayerCommand.Top)
+            if (enteredCommand != PlayerCommand.Other)
             {
-                UserInterface.ShowScoreboard(this.ScoreBoard);
+                ExecutePlayerCommand(enteredCommand);
             }
-            else if (enteredCommand == PlayerCommand.Help)
+            else
             {
-                if (this.number.RevealDigit(this.player.Cheats))
+                CheckPlayerInput(playerInput);
+            }
+        }
+
+        /// <summary>
+        /// Handles execusion of player command by this engine
+        /// </summary>
+        /// <param name="enteredCommand">Options that the game offers to a player</param>
+        private void ExecutePlayerCommand(PlayerCommand playerCommand)
+        {
+            switch (playerCommand)
+            {
+                case PlayerCommand.Top:
+                    UserInterface.ShowScoreboard(this.ScoreBoard);
+                    break;
+                case PlayerCommand.Help:
+                    if (this.number.RevealDigit(this.player.Cheats))
+                    {
+                        UserInterface.ShowHelp(this.number.HelpNumber.ToString());
+                        this.player.Cheats++;
+                    }
+                    else
+                    {
+                        UserInterface.ShowCheatsLimitReached();
+                    }
+                    break;
+                case PlayerCommand.Restart:
+                    Restart();
+                    break;
+                case PlayerCommand.Exit:
+                    Exit();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        /// <summary>
+        /// Performs comparison between number to be gueesed and player input if valid 
+        /// </summary>
+        /// <param name="playerInput">Input entered by player</param>
+        private void CheckPlayerInput(string playerInput)
+        {
+            if (IsValidInput(playerInput))
+            {
+                int bullsCount;
+                int cowsCount;
+
+                this.player.Attempts++;
+                this.number.GetBullsAndCows(playerInput, this.number.Digits, out bullsCount, out cowsCount);
+
+                if (bullsCount == GameNumber.LENGHT)
                 {
-                    UserInterface.ShowHelp(this.number.HelpNumber.ToString());
-                    this.player.Cheats++;
+                    UserInterface.ShowCongratulations(this.player.Attempts, this.player.Cheats);
+                    this.FinishGame();
                 }
-                else 
+                else
                 {
-                    UserInterface.ShowCheatsLimitReached();
+                    UserInterface.ShowGuessStatistics(bullsCount, cowsCount);
                 }
             }
             else
             {
-                if (IsValidInput(playerInput))
-                {
-                    this.player.Attempts++;
-                    int bullsCount;
-                    int cowsCount;
-                    this.number.GetBullsAndCows(playerInput, this.number.Digits, out bullsCount, out cowsCount);
-                    if (bullsCount == GameNumber.LENGHT)
-                    {
-                        UserInterface.ShowCongratulations(this.player.Attempts, this.player.Cheats);
-                        this.FinishGame();
-                        return;
-                    }
-                    else
-                    {
-                        UserInterface.ShowGuessStatistics(bullsCount, cowsCount);
-                    }
-                }
-                else
-                {
-                    if (enteredCommand != PlayerCommand.Restart && enteredCommand != PlayerCommand.Exit)
-                    {
-                        UserInterface.ShowWrongCommand();
-                    }
-                }
+                UserInterface.ShowWrongCommand();
             }
         }
 
@@ -204,6 +246,24 @@ namespace BullsAndCowsGame.GamePlay
             {
                 UserInterface.ShowScoreboard(this.ScoreBoard);
             }
+
+            Restart();
+        }
+
+        /// <summary>
+        /// Sets game to be restarted
+        /// </summary>
+        public void Restart()
+        {
+            this.restart = true;
+        }
+
+        /// <summary>
+        /// Sets game to be exited
+        /// </summary>
+        public void Exit()
+        {
+            this.exit = true;
         }
 
         #endregion
