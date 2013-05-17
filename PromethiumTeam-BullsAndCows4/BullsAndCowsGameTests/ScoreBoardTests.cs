@@ -11,14 +11,18 @@ namespace BullsAndCowsGameTests
     public class ScoreBoardTests
     {
         [TestMethod]
-        public void ScoreBoard_ToString_EmptyScoreBoard()
+        public void ScoreBoard_AddMethod()
         {
+            var pesho = new Player("Pesho");
+            
             ScoreBoard<Player> scoreBoard = new ScoreBoard<Player>();
+            scoreBoard.Add(pesho);
 
-            var actual = scoreBoard.ToString();
-            var expected = "Top scoreboard is empty.";
+            foreach (var player in scoreBoard)
+            {
+                Assert.AreSame(pesho,player);
+            }
 
-            Assert.AreEqual(expected, actual);
         }
     }
 }
