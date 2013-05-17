@@ -6,6 +6,9 @@
 
 namespace BullsAndCowsGame.Intefaces
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Iterface for Bulls and Cows ScoreBoard
     /// </summary>

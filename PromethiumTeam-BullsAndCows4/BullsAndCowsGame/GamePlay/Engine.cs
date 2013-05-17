@@ -23,7 +23,9 @@ namespace BullsAndCowsGame.GamePlay
 
         public Engine()
         {
-            this.scoreBoard = new ScoreBoard<Player>(); 
+            this.scoreBoard = new ScoreBoard<Player>();
+            this.player = new Player("NoName");
+            this.number = new Number();
         }
         
         /// <summary>
@@ -37,8 +39,6 @@ namespace BullsAndCowsGame.GamePlay
             do
             {
                 UserInterface.PrintWelcomeMessage();
-                this.player = new Player("NoName");
-                this.number = new Number();
 
                 do
                 {

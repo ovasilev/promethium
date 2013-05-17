@@ -6,6 +6,8 @@
 
 namespace BullsAndCowsGame.Intefaces
 {
+    using System;
+
     /// <summary>
     /// Interface for Bulls and Cows player
     /// </summary>
