@@ -56,7 +56,7 @@ namespace BullsAndCowsGame.UI
         /// Prints greetings message, including summery of the game 
         /// </summary>
         /// <param name="attempts">Number of guess attempts during the game</param>
-        /// <param name="attempts">Number of cheats used during the game</param>
+        /// <param name="cheats">Number of cheats used during the game</param>
         public static void ShowCongratulations(int attempts, int cheats)
         {
             Console.Write("Congratulations! You guessed the secret number in {0} attempts", attempts);
@@ -73,7 +73,7 @@ namespace BullsAndCowsGame.UI
         /// <summary>
         /// Prints the scoreboard on the console
         /// </summary>
-        /// <param name="scoreBoard">Given scoreboard to be printed</param>
+        /// <param name="scoreBoardString">Given scoreboard to be printed</param>
         public static void ShowScoreboard(string scoreBoardString)
         {
             Console.WriteLine(scoreBoardString);
@@ -100,6 +100,8 @@ namespace BullsAndCowsGame.UI
         /// <summary>
         /// Prints results of the last guess on the console
         /// </summary>
+        /// <param name="bullsCount">Shows the correctly guessed bulls</param>
+        /// <param name="cowsCount">Shows the correctly guessed cows</param>
         public static void ShowGuessStatistics(int bullsCount, int cowsCount)
         {
             Console.WriteLine("Wrong number! Bulls: {0}, Cows: {1}", bullsCount, cowsCount);
