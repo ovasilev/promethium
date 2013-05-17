@@ -17,31 +17,31 @@ namespace BullsAndCowsGame.GamePlay
     /// </summary>
     public class Engine
     {
-        #region Fields
-
-        /// <summary>
-        /// Number to be guessed in the game
-        /// </summary>
-        private GameNumber number;
-
-        /// <summary>
-        /// Player profile
-        /// </summary>
-        private Player player;
-
-        /// <summary>
-        /// Keeps highest scores of the game
-        /// </summary>
-        private ScoreBoard<Player> scoreBoard;
-
-        #endregion
-
         #region Constructors
 
         public Engine()
         {
-            this.scoreBoard = new ScoreBoard<Player>();
+            this.ScoreBoard = new ScoreBoard<Player>();
         }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Number to be guessed in the game
+        /// </summary>
+        private GameNumber Number { get; set; }
+
+        /// <summary>
+        /// Player profile
+        /// </summary>
+        private Player Player { get; set; }
+
+        /// <summary>
+        /// Keeps highest scores of the game
+        /// </summary>
+        private ScoreBoard<Player> ScoreBoard { get; set; }
 
         #endregion
 
@@ -58,8 +58,8 @@ namespace BullsAndCowsGame.GamePlay
             do
             {
                 UserInterface.ShowWelcomeGreeting();
-                this.player = new Player("NoName");
-                this.number = new GameNumber();
+                this.Player = new Player("NoName");
+                this.Number = new GameNumber();
 
                 do
                 {
@@ -87,14 +87,14 @@ namespace BullsAndCowsGame.GamePlay
         {
             if (enteredCommand == PlayerCommand.Top)
             {
-                UserInterface.ShowScoreboard(this.scoreBoard.ToString());
+                UserInterface.ShowScoreboard(this.ScoreBoard.ToString());
             }
             else if (enteredCommand == PlayerCommand.Help)
             {
-                if (this.number.RevealDigit(this.player.Cheats))
+                if (this.Number.RevealDigit(this.Player.Cheats))
                 {
-                    UserInterface.ShowHelp(this.number.HelpNumber.ToString());
-                    this.player.Cheats++;
+                    UserInterface.ShowHelp(this.Number.HelpNumber.ToString());
+                    this.Player.Cheats++;
                 }
                 else 
                 {
@@ -105,13 +105,13 @@ namespace BullsAndCowsGame.GamePlay
             {
                 if (IsValidInput(playerInput))
                 {
-                    this.player.Attempts++;
+                    this.Player.Attempts++;
                     int bullsCount;
                     int cowsCount;
-                    this.number.GetBullsAndCows(playerInput, this.number.Digits, out bullsCount, out cowsCount);
+                    this.Number.GetBullsAndCows(playerInput, this.Number.Digits, out bullsCount, out cowsCount);
                     if (bullsCount == GameNumber.LENGHT)
                     {
-                        UserInterface.ShowCongratulations(this.player.Attempts, this.player.Cheats);
+                        UserInterface.ShowCongratulations(this.Player.Attempts, this.Player.Cheats);
                         this.FinishGame();
                         return;
                     }
@@ -160,10 +160,10 @@ namespace BullsAndCowsGame.GamePlay
         /// </summary>
         public void AddPlayerToScoreboard()
         {
-            if (this.player.Cheats == 0)
+            if (this.Player.Cheats == 0)
             {
                 string playerName = UserInterface.GetPlayerName();
-                this.scoreBoard.Add(player);
+                this.ScoreBoard.Add(Player);
             }
             else
             {
@@ -178,9 +178,9 @@ namespace BullsAndCowsGame.GamePlay
         {
             AddPlayerToScoreboard();
 
-            if (this.player.Cheats == 0)
+            if (this.Player.Cheats == 0)
             {
-                UserInterface.ShowScoreboard(this.scoreBoard.ToString());
+                UserInterface.ShowScoreboard(this.ScoreBoard.ToString());
             }
         }
 
