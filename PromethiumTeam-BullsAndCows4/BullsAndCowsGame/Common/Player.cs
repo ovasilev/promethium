@@ -32,7 +32,7 @@ namespace BullsAndCowsGame
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.

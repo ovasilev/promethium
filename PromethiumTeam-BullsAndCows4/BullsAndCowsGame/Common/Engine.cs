@@ -14,29 +14,36 @@ namespace BullsAndCowsGame
     /// </summary>
     public class Engine
     {
+        private Number number;
+        private Player player;
+        private ScoreBoard<Player> scoreBoard;
+
+        public Engine()
+        {
+            this.scoreBoard = new ScoreBoard<Player>(); 
+        }
+        
         /// <summary>
         /// This is the method that each new game strats with. It calls several
         /// other helper methods.
         /// </summary>
-        public void Start()
+        public void StartGame()
         {
             PlayerCommand enteredCommand = new PlayerCommand();
 
             do
             {
                 UserInterface.PrintWelcomeMessage();
-                Player currentPlayer = new Player("NoName");
-                NumberManager.GenerateNumber();
-				
-                UserInterface.HelpNumber = new StringBuilder("XXXX");
-                UserInterface.HelpPattern = null;
+                this.player = new Player("NoName");
+                this.number = new Number();
+
                 do
                 {
                     Console.Write("Enter your guess or command: ");
                     string playerInput = Console.ReadLine();
                     enteredCommand = CommandParser.PlayerInputToPlayerCommand(playerInput);
 
-                    ExecuteCommand(enteredCommand, playerInput, currentPlayer);
+                    ExecuteCommand(enteredCommand, playerInput);
                 }
                 while (enteredCommand != PlayerCommand.Exit && enteredCommand != PlayerCommand.Restart);
                 
@@ -53,28 +60,36 @@ namespace BullsAndCowsGame
         /// <param name="enteredCommand">Options that the game offers to a player</param>
         /// <param name="playerInput">Command that player enters</param>
         /// <param name="player">The user that's playing at the moment</param>
-        private void ExecuteCommand(PlayerCommand enteredCommand, string playerInput, Player player)
+        private void ExecuteCommand(PlayerCommand enteredCommand, string playerInput)
         {
             if (enteredCommand == PlayerCommand.Top)
             {
-                UserInterface.PrintScoreboard();
+                UserInterface.PrintScoreboard(this.scoreBoard);
             }
             else if (enteredCommand == PlayerCommand.Help)
             {
-                player.Cheats = UserInterface.ShowHelp(player.Cheats);
+                if (number.RevealDigit(player.Cheats))
+                {
+                    UserInterface.ShowHelp(number.HelpNumber.ToString());
+                    player.Cheats++;
+                }
+                else 
+                {
+                    UserInterface.PrintCheatsLimitReached();
+                }
             }
             else
             {
                 if (IsValidInput(playerInput))
                 {
-                    player.Attempts++;
+                    this.player.Attempts++;
                     int bullsCount;
                     int cowsCount;
-                    NumberManager.GetBullsAndCows(playerInput, NumberManager.Number, out bullsCount, out cowsCount);
-                    if (bullsCount == NumberManager.NUMBER_LENGHT)
+                    number.GetBullsAndCows(playerInput, number.Digits, out bullsCount, out cowsCount);
+                    if (bullsCount == Number.NUMBER_LENGHT)
                     {
                         UserInterface.PrintCongratulateMessage(player.Attempts, player.Cheats);
-                        UserInterface.FinishGame(player.Attempts, player.Cheats);
+                        this.FinishGame(player.Attempts, player.Cheats);
                         return;
                     }
                     else
@@ -102,7 +117,7 @@ namespace BullsAndCowsGame
         /// according to if the input is valid or not.</returns>
         private bool IsValidInput(string playerInput)
         {
-            if (playerInput == String.Empty || playerInput.Length != NumberManager.NUMBER_LENGHT)
+            if (playerInput == String.Empty || playerInput.Length != Number.NUMBER_LENGHT)
             {
                 return false;
             }
@@ -115,6 +130,27 @@ namespace BullsAndCowsGame
                 }
             }
             return true;
+        }
+
+        public void AddPlayerToScoreboard(string playerName, int attempts)
+        {
+            Player player = new Player(playerName, attempts);
+           this.scoreBoard.Add(player);
+        }
+
+        public void FinishGame(int attempts, int cheats)
+        {
+            if (cheats == 0)
+            {
+                Console.Write("Please enter your name for the top scoreboard: ");
+                string playerName = Console.ReadLine();
+                AddPlayerToScoreboard(playerName, attempts);
+                UserInterface.PrintScoreboard(this.scoreBoard);
+            }
+            else
+            {
+                Console.WriteLine("You are not allowed to enter the top scoreboard.");
+            }
         }
     }
 }

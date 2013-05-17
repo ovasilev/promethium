@@ -8,7 +8,7 @@ namespace BullsAndCowsGame
         static void Main(string[] args)
         {
             Engine game = new Engine();
-            game.Start();
+            game.StartGame();
         }
     }
 }

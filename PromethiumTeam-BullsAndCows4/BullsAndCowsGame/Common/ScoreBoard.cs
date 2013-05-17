@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="NumberManager.cs" company="TelerikAcademy">
+// <copyright file="ScoreBoard.cs" company="TelerikAcademy">
 //     All rights reserved © Telerik Academy 2012-2013
 // </copyright>
 //-----------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace BullsAndCowsGame
     /// Class that manages the score board
     /// </summary>
     //Refactored original class "klasirane"s
-    class ScoreBoard<T> : IEnumerable<T>, IEnumerator<T> where T : IComparable<T>
+    public class ScoreBoard<T> : IEnumerable<T>, IEnumerator<T> where T : IComparable<T>
     {
         private readonly T[] data;
         private int count;

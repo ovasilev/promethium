@@ -10,7 +10,7 @@ using System.Linq;
 namespace BullsAndCowsGame
 {
     /// <summary>
-    /// Several options that the player can choose during the game
+    /// Type of command, entered by user
     /// </summary>
     public enum PlayerCommand
     {

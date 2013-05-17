@@ -7,3 +7,9 @@ C:\Users\2\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCows
 C:\Users\Kaloyan\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.exe.config
 C:\Users\Kaloyan\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.exe
 C:\Users\Kaloyan\Documents\GitHub\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.pdb
+D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.exe.config
+D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.exe
+D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.pdb
+D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\obj\Debug\BullsAndCowsGame.csprojResolveAssemblyReference.cache
+D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.exe
+D:\User Files\My Documents\Telerik Academy\CSharpTrack\04 High Quality Code\Homework\promethium\PromethiumTeam-BullsAndCows4\BullsAndCowsGame\bin\Debug\BullsAndCowsGame.pdb
