@@ -22,7 +22,7 @@ namespace BullsAndCowsGame.GamePlay
         /// <summary>
         /// Number to be guessed in the game
         /// </summary>
-        private Number number;
+        private GameNumber number;
 
         /// <summary>
         /// Player profile
@@ -59,7 +59,7 @@ namespace BullsAndCowsGame.GamePlay
             {
                 UserInterface.ShowWelcomeGreeting();
                 this.player = new Player("NoName");
-                this.number = new Number();
+                this.number = new GameNumber();
 
                 do
                 {
@@ -109,7 +109,7 @@ namespace BullsAndCowsGame.GamePlay
                     int bullsCount;
                     int cowsCount;
                     this.number.GetBullsAndCows(playerInput, this.number.Digits, out bullsCount, out cowsCount);
-                    if (bullsCount == Number.LENGHT)
+                    if (bullsCount == GameNumber.LENGHT)
                     {
                         UserInterface.ShowCongratulations(this.player.Attempts, this.player.Cheats);
                         this.FinishGame();
@@ -140,7 +140,7 @@ namespace BullsAndCowsGame.GamePlay
         /// according to if the input is valid or not.</returns>
         private bool IsValidInput(string playerInput)
         {
-            if (playerInput == String.Empty || playerInput.Length != Number.LENGHT)
+            if (playerInput == String.Empty || playerInput.Length != GameNumber.LENGHT)
             {
                 return false;
             }

@@ -12,7 +12,7 @@ namespace BullsAndCowsGame.GameObjects
     /// <summary>
     /// Static Class for that manages number generation
     /// </summary>
-    internal class Number
+    public class GameNumber
     {
         #region Fields
 
@@ -27,9 +27,9 @@ namespace BullsAndCowsGame.GameObjects
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Number"/> class.
+        /// Initializes a new instance of the <see cref="GameNumber"/> class.
         /// </summary>
-        public Number()
+        public GameNumber()
         {
             this.Digits = this.GenerateNumber();
             this.HelpPattern = this.GenerateHelpPattern();
@@ -128,7 +128,7 @@ namespace BullsAndCowsGame.GameObjects
         {
             bool reveal = false;
 
-            if (cheats < Number.LENGHT)
+            if (cheats < GameNumber.LENGHT)
             {
                 int digitToReveal = this.HelpPattern[cheats] - '0';
                 this.HelpNumber[digitToReveal - 1] = this.Digits[digitToReveal - 1];

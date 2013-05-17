@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BullsAndCows.cs" />
-    <Compile Include="GameObjects\Number.cs" />
+    <Compile Include="GameObjects\GameNumber.cs" />
     <Compile Include="Intefaces\IPlayer.cs" />
     <Compile Include="Intefaces\IScoreBoard.cs" />
     <Compile Include="UI\CommandParser.cs" />
