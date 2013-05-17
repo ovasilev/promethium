@@ -17,17 +17,36 @@ namespace BullsAndCowsGame.GamePlay
     /// </summary>
     public class Engine
     {
+        #region Fields
+
+        /// <summary>
+        /// Number to be guessed in the game
+        /// </summary>
         private Number number;
+
+        /// <summary>
+        /// Player profile
+        /// </summary>
         private Player player;
+
+        /// <summary>
+        /// Keeps highest scores of the game
+        /// </summary>
         private ScoreBoard<Player> scoreBoard;
+
+        #endregion
+
+        #region Constructors
 
         public Engine()
         {
             this.scoreBoard = new ScoreBoard<Player>();
-            this.player = new Player("NoName");
-            this.number = new Number();
         }
-        
+
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// This is the method that each new game strats with. It calls several
         /// other helper methods.
@@ -38,23 +57,23 @@ namespace BullsAndCowsGame.GamePlay
 
             do
             {
-                UserInterface.PrintWelcomeMessage();
+                UserInterface.ShowWelcomeGreeting();
+                this.player = new Player("NoName");
+                this.number = new Number();
 
                 do
                 {
-                    Console.Write("Enter your guess or command: ");
-                    string playerInput = Console.ReadLine();
+                    string playerInput = UserInterface.GetPlayerCommand(); 
                     enteredCommand = CommandParser.PlayerInputToPlayerCommand(playerInput);
-
                     ExecuteCommand(enteredCommand, playerInput);
                 }
                 while (enteredCommand != PlayerCommand.Exit && enteredCommand != PlayerCommand.Restart);
-                
-                Console.WriteLine();
+
+                UserInterface.EndOfGameMessage();
             }
             while (enteredCommand != PlayerCommand.Exit);
 
-            Console.WriteLine("Good bye!");
+            UserInterface.ShowFairwell();
         }
 
         /// <summary>
@@ -68,18 +87,18 @@ namespace BullsAndCowsGame.GamePlay
         {
             if (enteredCommand == PlayerCommand.Top)
             {
-                UserInterface.PrintScoreboard(this.scoreBoard as IScoreBoard<IPlayer>);
+                UserInterface.ShowScoreboard(this.scoreBoard.ToString());
             }
             else if (enteredCommand == PlayerCommand.Help)
             {
-                if (number.RevealDigit(player.Cheats))
+                if (this.number.RevealDigit(this.player.Cheats))
                 {
-                    UserInterface.ShowHelp(number.HelpNumber.ToString());
-                    player.Cheats++;
+                    UserInterface.ShowHelp(this.number.HelpNumber.ToString());
+                    this.player.Cheats++;
                 }
                 else 
                 {
-                    UserInterface.PrintCheatsLimitReached();
+                    UserInterface.ShowCheatsLimitReached();
                 }
             }
             else
@@ -89,23 +108,23 @@ namespace BullsAndCowsGame.GamePlay
                     this.player.Attempts++;
                     int bullsCount;
                     int cowsCount;
-                    number.GetBullsAndCows(playerInput, number.Digits, out bullsCount, out cowsCount);
+                    this.number.GetBullsAndCows(playerInput, this.number.Digits, out bullsCount, out cowsCount);
                     if (bullsCount == Number.LENGHT)
                     {
-                        UserInterface.PrintCongratulateMessage(player.Attempts, player.Cheats);
-                        this.FinishGame(player.Attempts, player.Cheats);
+                        UserInterface.ShowCongratulations(this.player.Attempts, this.player.Cheats);
+                        this.FinishGame();
                         return;
                     }
                     else
                     {
-                        Console.WriteLine("Wrong number! Bulls: {0}, Cows: {1}", bullsCount, cowsCount);
+                        UserInterface.ShowGuessStatistics(bullsCount, cowsCount);
                     }
                 }
                 else
                 {
                     if (enteredCommand != PlayerCommand.Restart && enteredCommand != PlayerCommand.Exit)
                     {
-                        UserInterface.PrintWrongCommandMessage();
+                        UserInterface.ShowWrongCommand();
                     }
                 }
             }
@@ -136,25 +155,35 @@ namespace BullsAndCowsGame.GamePlay
             return true;
         }
 
-        public void AddPlayerToScoreboard(string playerName, int attempts)
+        /// <summary>
+        /// Adds the player to the scoreboard at the end of the game, if hasn't used cheats
+        /// </summary>
+        public void AddPlayerToScoreboard()
         {
-            Player player = new Player(playerName, attempts);
-           this.scoreBoard.Add(player);
-        }
-
-        public void FinishGame(int attempts, int cheats)
-        {
-            if (cheats == 0)
+            if (this.player.Cheats == 0)
             {
-                Console.Write("Please enter your name for the top scoreboard: ");
-                string playerName = Console.ReadLine();
-                AddPlayerToScoreboard(playerName, attempts);
-                UserInterface.PrintScoreboard(this.scoreBoard as IScoreBoard<IPlayer>);
+                string playerName = UserInterface.GetPlayerName();
+                this.scoreBoard.Add(player);
             }
             else
             {
-                Console.WriteLine("You are not allowed to enter the top scoreboard.");
+                UserInterface.ShowCheatersMessage();
             }
         }
+
+        /// <summary>
+        /// Takes care of scoreboard and user comunication at end of each game
+        /// </summary>
+        public void FinishGame()
+        {
+            AddPlayerToScoreboard();
+
+            if (this.player.Cheats == 0)
+            {
+                UserInterface.ShowScoreboard(this.scoreBoard.ToString());
+            }
+        }
+
+        #endregion
     }
 }

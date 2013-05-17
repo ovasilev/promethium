@@ -10,6 +10,7 @@ namespace BullsAndCowsGame.GameObjects
     using System.Collections.Generic;
     using System.Linq;
     using BullsAndCowsGame.Intefaces;
+    using System.Text;
 
     /// <summary>
     /// Class that manages the score board
@@ -171,6 +172,25 @@ namespace BullsAndCowsGame.GameObjects
         public void Dispose()
         {
             this.Reset();
+        }
+
+        public override string ToString()
+        {
+            if (this.Count == 0)
+            {
+                return "Top scoreboard is empty.";
+            }
+
+            StringBuilder sb = new StringBuilder("Scoreboard:");
+            sb.Append(Environment.NewLine);
+            int i = 1;
+            foreach (IPlayer player in this)
+            {
+                sb.AppendFormat("{0}. {1} --> {2} guess" + ((player.Attempts == 1) ? "" : "es"), i++, player.Name, player.Attempts);
+                sb.Append(Environment.NewLine);
+            }
+
+            return sb.ToString().Trim();
         }
 
         #endregion

@@ -14,6 +14,8 @@ namespace BullsAndCowsGame.UI
     /// </summary>
     public static class CommandParser
     {
+        #region Methods
+
         /// <summary>
         /// Method which handles player's commands
         /// </summary>
@@ -42,5 +44,7 @@ namespace BullsAndCowsGame.UI
                 return PlayerCommand.Other;
             }
         }
+
+        #endregion
     }
 }

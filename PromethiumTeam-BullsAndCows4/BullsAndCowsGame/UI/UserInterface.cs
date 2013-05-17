@@ -10,6 +10,7 @@ namespace BullsAndCowsGame.UI
     using System.Linq;
     using System.Text;
     using BullsAndCowsGame.Intefaces;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Public Static Class that manages the user interface
@@ -38,7 +39,7 @@ namespace BullsAndCowsGame.UI
         /// <summary>
         /// Prints welcome message from constant WELCOME_MESSAGE on the console
         /// </summary>        
-        public static void PrintWelcomeMessage()
+        public static void ShowWelcomeGreeting()
         {
             Console.WriteLine(WELCOME_MESSAGE);
         }
@@ -46,7 +47,7 @@ namespace BullsAndCowsGame.UI
         /// <summary>
         /// Prints wrong command message from constant WRONG_COMMAND_MESSAGE on the console
         /// </summary>        
-        public static void PrintWrongCommandMessage()
+        public static void ShowWrongCommand()
         {
             Console.WriteLine(WRONG_COMMAND_MESSAGE);
         }
@@ -56,7 +57,7 @@ namespace BullsAndCowsGame.UI
         /// </summary>
         /// <param name="attempts">Number of guess attempts during the game</param>
         /// <param name="attempts">Number of cheats used during the game</param>
-        public static void PrintCongratulateMessage(int attempts, int cheats)
+        public static void ShowCongratulations(int attempts, int cheats)
         {
             Console.Write("Congratulations! You guessed the secret number in {0} attempts", attempts);
             if (cheats == 0)
@@ -73,21 +74,9 @@ namespace BullsAndCowsGame.UI
         /// Prints the scoreboard on the console
         /// </summary>
         /// <param name="scoreBoard">Given scoreboard to be printed</param>
-        public static void PrintScoreboard(IScoreBoard<IPlayer> scoreBoard)
+        public static void ShowScoreboard(string scoreBoardString)
         {
-            if (scoreBoard.Count == 0)
-            {
-                Console.WriteLine("Top scoreboard is empty.");
-            }
-            else
-            {
-                Console.WriteLine("Scoreboard:");
-                int i = 1;
-                foreach (IPlayer player in scoreBoard)
-                {
-                    Console.WriteLine("{0}. {1} --> {2} guess" + ((player.Attempts == 1) ? "" : "es"), i++, player.Name, player.Attempts);
-                }
-            }
+            Console.WriteLine(scoreBoardString);
         }
 
         /// <summary>
@@ -100,12 +89,68 @@ namespace BullsAndCowsGame.UI
         }
 
         /// <summary>
-        /// Prints message that cheat limit is reached
+        /// Prints message that cheat limit is reached on the console
         /// </summary>
-        public static void PrintCheatsLimitReached()
+        public static void ShowCheatsLimitReached()
         {
 
             Console.WriteLine("You are not allowed to ask for more help!");
+        }
+
+        /// <summary>
+        /// Prints results of the last guess on the console
+        /// </summary>
+        public static void ShowGuessStatistics(int bullsCount, int cowsCount)
+        {
+            Console.WriteLine("Wrong number! Bulls: {0}, Cows: {1}", bullsCount, cowsCount);
+        }
+
+        /// <summary>
+        /// Prints message on the console for the players, who used help
+        /// </summary>
+        public static void ShowCheatersMessage()
+        {
+            Console.WriteLine("You are not allowed to enter the top scoreboard.");
+        }
+
+        /// <summary>
+        /// Prints message on the console at end of each game
+        /// </summary>
+        public static void EndOfGameMessage()
+        {
+            Console.WriteLine();
+        }
+
+        /// <summary>
+        /// Prints message on the console for goodbye
+        /// </summary>
+        public static void ShowFairwell()
+        {
+            Console.WriteLine("Good bye!");
+        }
+
+        /// <summary>
+        /// Asks user to enter next command and returns it as text
+        /// </summary>
+        /// <returns>Returns player input as text</returns>
+        public static string GetPlayerCommand()
+        {
+            Console.Write("Enter your guess or command: ");
+            string playerInput = Console.ReadLine();
+
+            return playerInput;
+        }
+
+        /// <summary>
+        /// Asks user to enter his name on the console and returns it as text
+        /// </summary>
+        /// <returns>Returns player's name as text</returns>
+        public static string GetPlayerName()
+        {
+            Console.Write("Please enter your name for the top scoreboard: ");
+            string playerName = Console.ReadLine();
+
+            return playerName;
         }
 
         #endregion
