@@ -50,15 +50,16 @@ namespace BullsAndCowsGame.GameObjects
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScoreBoard"/> class.
+        /// Initializes a new instance of the ScoreBoard class.
         /// </summary>
         public ScoreBoard()
             : this(defaultScoreBoardLenght)
         { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScoreBoard"/> class.
+        /// Initializes a new instance of the ScoreBoard class.
         /// </summary>
+        /// <param name="maxCount">ScoreBoard max number of inputs</param>
         public ScoreBoard(int maxCount)
         {
             this.maxCount = maxCount;
@@ -126,18 +127,18 @@ namespace BullsAndCowsGame.GameObjects
         }
 
         /// <summary>
-        /// 
+        /// Method for iteration through a collection.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns an enumerator that iterates through a collection.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             return (IEnumerator<T>)this;
         }
 
         /// <summary>
-        /// 
+        /// Method for iteration through a collection.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns an enumerator that iterates through a collection.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return (IEnumerator<T>)this;
@@ -146,7 +147,7 @@ namespace BullsAndCowsGame.GameObjects
         /// <summary>
         /// Moves to next position in the colection
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns the next position</returns>
         public bool MoveNext()
         {
             if (this.position < this.Count - 1)
@@ -173,7 +174,11 @@ namespace BullsAndCowsGame.GameObjects
         {
             this.Reset();
         }
-
+        
+        /// <summary>
+        /// Prints the scoreboard on the console
+        /// </summary>
+        /// <returns>Returns a list with the top score players</returns>
         public override string ToString()
         {
             if (this.Count == 0)
