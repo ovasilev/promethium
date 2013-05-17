@@ -4,11 +4,11 @@
 // </copyright>
 //----------------------------------------------------------------------
 
-using System;
-using System.Linq;
-
 namespace BullsAndCowsGame.UI
 {
+    using System;
+    using System.Linq;
+
     /// <summary>
     /// Static class responsible for player's commands
     /// </summary>

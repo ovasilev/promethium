@@ -4,14 +4,14 @@
 // </copyright>
 //----------------------------------------------------------------------
 
-using System;
-using System.Text;
-using BullsAndCowsGame.GameObjects;
-using BullsAndCowsGame.UI;
-using BullsAndCowsGame.Intefaces;
-
 namespace BullsAndCowsGame.GamePlay
 {
+    using System;
+    using System.Text;
+    using BullsAndCowsGame.GameObjects;
+    using BullsAndCowsGame.UI;
+    using BullsAndCowsGame.Intefaces;
+
     /// <summary>
     /// Class Engine stores the main functionality of the game
     /// </summary>

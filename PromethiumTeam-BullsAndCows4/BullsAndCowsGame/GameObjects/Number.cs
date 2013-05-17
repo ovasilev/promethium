@@ -3,6 +3,7 @@
 //     All rights reserved © Telerik Academy 2012-2013
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace BullsAndCowsGame.GameObjects
 {
     using System;

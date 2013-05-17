@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//-----------------------------------------------------------------------
+// <copyright file="IPlayer.cs" company="TelerikAcademy">
+//     All rights reserved © Telerik Academy 2012-2013
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace BullsAndCowsGame.Intefaces
 {
+    /// <summary>
+    /// Interface for Bulls and Cows player
+    /// </summary>
     public interface IPlayer : IComparable<IPlayer>
     {
         string Name { get; set; }

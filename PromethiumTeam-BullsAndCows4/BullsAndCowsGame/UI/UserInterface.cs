@@ -14,9 +14,10 @@ namespace BullsAndCowsGame.UI
     /// <summary>
     /// Public Static Class that manages the user interface
     /// </summary>
-    //TODO : Refactor code, that manages user comunication from original class "bikove_i_kravi"
     public static class UserInterface
     {
+        #region Fields
+
         /// <summary>
         /// Constant representing the welcome message, when starting the game
         /// </summary>
@@ -29,6 +30,10 @@ namespace BullsAndCowsGame.UI
         /// Constant representing the warning message, when something goes wrong
         /// </summary>
         private const string WRONG_COMMAND_MESSAGE = "Incorrect guess or command!";
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Prints welcome message from constant WELCOME_MESSAGE on the console
@@ -102,5 +107,7 @@ namespace BullsAndCowsGame.UI
 
             Console.WriteLine("You are not allowed to ask for more help!");
         }
+
+        #endregion
     }
 }
