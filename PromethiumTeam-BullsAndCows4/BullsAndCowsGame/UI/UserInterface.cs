@@ -74,9 +74,25 @@ namespace BullsAndCowsGame.UI
         /// Prints the scoreboard on the console
         /// </summary>
         /// <param name="scoreBoardString">Given scoreboard to be printed</param>
-        public static void ShowScoreboard(string scoreBoardString)
+        public static void ShowScoreboard(IScoreBoard<IPlayer> scoreBoard)
         {
-            Console.WriteLine(scoreBoardString);
+            if (scoreBoard.Count != 0)
+            {
+                StringBuilder sb = new StringBuilder("Scoreboard:");
+                sb.Append(Environment.NewLine);
+                int i = 1;
+                foreach (IPlayer player in scoreBoard)
+                {
+                    sb.AppendFormat("{0}. {1} --> {2} guess" + ((player.Attempts == 1) ? "" : "es"), i++, player.Name, player.Attempts);
+                    sb.Append(Environment.NewLine);
+                }
+
+                Console.WriteLine(sb.ToString().Trim());
+            }
+            else
+            {
+                Console.WriteLine("Top scoreboard is empty.");
+            }
         }
 
         /// <summary>

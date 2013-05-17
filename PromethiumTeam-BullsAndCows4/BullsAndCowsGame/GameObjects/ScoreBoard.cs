@@ -174,29 +174,6 @@ namespace BullsAndCowsGame.GameObjects
         {
             this.Reset();
         }
-        
-        /// <summary>
-        /// Prints the scoreboard on the console
-        /// </summary>
-        /// <returns>Returns a list with the top score players</returns>
-        public override string ToString()
-        {
-            if (this.Count == 0)
-            {
-                return "Top scoreboard is empty.";
-            }
-
-            StringBuilder sb = new StringBuilder("Scoreboard:");
-            sb.Append(Environment.NewLine);
-            int i = 1;
-            foreach (IPlayer player in this)
-            {
-                sb.AppendFormat("{0}. {1} --> {2} guess" + ((player.Attempts == 1) ? "" : "es"), i++, player.Name, player.Attempts);
-                sb.Append(Environment.NewLine);
-            }
-
-            return sb.ToString().Trim();
-        }
 
         #endregion
     }      

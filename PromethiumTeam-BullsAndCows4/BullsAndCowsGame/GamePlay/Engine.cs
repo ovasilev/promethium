@@ -17,11 +17,30 @@ namespace BullsAndCowsGame.GamePlay
     /// </summary>
     public class Engine
     {
+        #region Fields
+
+        /// <summary>
+        /// Number to be guessed in the game
+        /// </summary>
+        private GameNumber number { get; set; }
+
+        /// <summary>
+        /// Player profile
+        /// </summary>
+        private Player player { get; set; }
+
+        /// <summary>
+        /// Keeps highest scores of the game
+        /// </summary>
+        private ScoreBoard<Player> scoreBoard { get; set; }
+
+        #endregion
+
         #region Constructors
 
         public Engine()
         {
-            this.ScoreBoard = new ScoreBoard<Player>();
+            this.scoreBoard = new ScoreBoard<Player>();
         }
 
         #endregion
@@ -29,19 +48,22 @@ namespace BullsAndCowsGame.GamePlay
         #region Properties
 
         /// <summary>
-        /// Number to be guessed in the game
+        /// Public representation of the highest scores in the game
         /// </summary>
-        private GameNumber Number { get; set; }
+        public IScoreBoard<IPlayer> ScoreBoard
+        {
+            get
+            {
+                ScoreBoard<IPlayer> iScoreBoard = new ScoreBoard<IPlayer>();
 
-        /// <summary>
-        /// Player profile
-        /// </summary>
-        private Player Player { get; set; }
+                foreach (var player in this.scoreBoard)
+                {
+                    iScoreBoard.Add((IPlayer)player);
+                }
 
-        /// <summary>
-        /// Keeps highest scores of the game
-        /// </summary>
-        private ScoreBoard<Player> ScoreBoard { get; set; }
+                return (IScoreBoard<IPlayer>)iScoreBoard;
+            }
+        }
 
         #endregion
 
@@ -58,8 +80,8 @@ namespace BullsAndCowsGame.GamePlay
             do
             {
                 UserInterface.ShowWelcomeGreeting();
-                this.Player = new Player("NoName");
-                this.Number = new GameNumber();
+                this.player = new Player("NoName");
+                this.number = new GameNumber();
 
                 do
                 {
@@ -87,14 +109,14 @@ namespace BullsAndCowsGame.GamePlay
         {
             if (enteredCommand == PlayerCommand.Top)
             {
-                UserInterface.ShowScoreboard(this.ScoreBoard.ToString());
+                UserInterface.ShowScoreboard(this.ScoreBoard);
             }
             else if (enteredCommand == PlayerCommand.Help)
             {
-                if (this.Number.RevealDigit(this.Player.Cheats))
+                if (this.number.RevealDigit(this.player.Cheats))
                 {
-                    UserInterface.ShowHelp(this.Number.HelpNumber.ToString());
-                    this.Player.Cheats++;
+                    UserInterface.ShowHelp(this.number.HelpNumber.ToString());
+                    this.player.Cheats++;
                 }
                 else 
                 {
@@ -105,13 +127,13 @@ namespace BullsAndCowsGame.GamePlay
             {
                 if (IsValidInput(playerInput))
                 {
-                    this.Player.Attempts++;
+                    this.player.Attempts++;
                     int bullsCount;
                     int cowsCount;
-                    this.Number.GetBullsAndCows(playerInput, this.Number.Digits, out bullsCount, out cowsCount);
+                    this.number.GetBullsAndCows(playerInput, this.number.Digits, out bullsCount, out cowsCount);
                     if (bullsCount == GameNumber.LENGHT)
                     {
-                        UserInterface.ShowCongratulations(this.Player.Attempts, this.Player.Cheats);
+                        UserInterface.ShowCongratulations(this.player.Attempts, this.player.Cheats);
                         this.FinishGame();
                         return;
                     }
@@ -160,10 +182,10 @@ namespace BullsAndCowsGame.GamePlay
         /// </summary>
         public void AddPlayerToScoreboard()
         {
-            if (this.Player.Cheats == 0)
+            if (this.player.Cheats == 0)
             {
-                string playerName = UserInterface.GetPlayerName();
-                this.ScoreBoard.Add(Player);
+              player.Name = UserInterface.GetPlayerName();
+              this.scoreBoard.Add(player);
             }
             else
             {
@@ -178,9 +200,9 @@ namespace BullsAndCowsGame.GamePlay
         {
             AddPlayerToScoreboard();
 
-            if (this.Player.Cheats == 0)
+            if (this.player.Cheats == 0)
             {
-                UserInterface.ShowScoreboard(this.ScoreBoard.ToString());
+                UserInterface.ShowScoreboard(this.ScoreBoard);
             }
         }
 
